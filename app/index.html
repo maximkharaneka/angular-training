@@ -13,15 +13,30 @@
 </head>
 <body ng-app="app">
 
-<div class="container">
-    <div class="row" ng-controller="kittyController as model">
-        <div class="col-sm-8" >
-            <img ng-src="{{kitty.src}}" ng-click="kitty.kittyClick()"/>
-        </div>
+<div class="container" ng-controller="kittyController as model">
+    <div class="row" ng-repeat="cat in kittys">
         <div class="col-sm-4">
-            <h6>{{kitty.clickCount}}</h6>
+            <h5>{{cat.name}}</h5>
         </div>
+        <div class="col-sm-2">
+            <h6>{{cat.clickCount}}</h6>
+        </div>
+        <div class="col-sm-6">
+            <img ng-src="{{cat.src}}" ng-click="kittyClick(cat)" height="100" width="100"/>
+        </div>
+
     </div>
+
+
+    <!--<div class="row" ng-repeat="cat in model.kittys">-->
+    <!--<div class="col-sm-8" >-->
+    <!--<img ng-src="{{cat.src}}" ng-click="kitty.kittyClick(cat)"/>-->
+    <!--</div>-->
+    <!--<div class="col-sm-4">-->
+    <!--<h6>{{kitty.clickCount}}</h6>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!-- -->
 </div>
 </body>
 </html>
