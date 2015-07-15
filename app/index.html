@@ -6,17 +6,30 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
     <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap-theme.min.css"/>
-
+    <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
     <script src="/bower_components/angular/angular.min.js"></script>
-
     <script src="/build/angular-training.js"></script>
+    <!--<script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-1.4.2.min.js"></script>-->
+    <!--<script type="text/javascript" src="/js/scripts.js"></script>-->
 </head>
 <body ng-app="app">
 
-<div class="container" ng-controller="kittyController as model">
+<div class="container" ng-controller="kittyController as model" ng-cloak>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title" >{{kittys[mainIndex].name}} <span class="badge">{{kittys[mainIndex].clickCount}}</span></h3>
+            <form class="form-inline">
+            <span>{{kittys[mainIndex].name}}</span>
+
+            <span class="input-group spinner">
+
+                <input type="text" class="form-control" ng-model="kittys[mainIndex].clickCount">
+                <div class="input-group-btn-vertical">
+                    <button class="btn btn-default" type="button" ng-click="kittyIncrease(kittys[mainIndex],1)"><i class="fa fa-caret-up"></i></button>
+                    <button class="btn btn-default" type="button" ng-click="kittyIncrease(kittys[mainIndex],-1)"><i class="fa fa-caret-down"></i></button>
+                </div>
+            </span>
+            <!--<span class="badge">{{kittys[mainIndex].clickCount}}</span>-->
+            </form>
         </div>
         <div class="panel-body">
             <img ng-src="{{kittys[mainIndex].src}}" ng-click="kittyClick(kittys[mainIndex])" height="400" width="400"/>
@@ -29,6 +42,7 @@
             <thead>
             <tr>
                 <th>Name</th>
+                <th>Viewed</th>
                 <th>Click count</th>
                 <th>Avatar</th>
             </tr>
@@ -36,6 +50,7 @@
             <tbody>
             <tr ng-repeat="cat in kittys track by $index | orderBy:'name'">
                 <td><h2 ng-click="kittyNameClick( $index )">{{cat.name}}</h2></td>
+                <td><img src="/img/ok.png" ng-show="cat.isViewed" height="25" width="25"/></td>
                 <td>{{cat.clickCount}}</td>
                 <td><img ng-src="{{cat.src}}" ng-click="kittyClick(cat)" height="100" width="100"/></td>
             </tr>

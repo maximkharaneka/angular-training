@@ -5,26 +5,31 @@
         $scope.kittys = [{
             clickCount: 0,
             name:'Redy',
-            src: '/img/Redy.gif'
+            src: '/img/Redy.gif',
+            isViewed:false
         }, {
             clickCount: 0,
             name:'Graye',
-            src: '/img/Graye.gif'
+            src: '/img/Graye.gif',
+            isViewed:false
 
         }, {
             clickCount: 0,
             name:'Flye',
-            src: '/img/Flye.gif'
+            src: '/img/Flye.gif',
+            isViewed:false
 
         }, {
             clickCount: 0,
             name:'Pinkie',
-            src: '/img/Pinkie.gif'
+            src: '/img/Pinkie.gif',
+            isViewed:false
 
         }, {
             clickCount: 0,
             name:'Whity',
-            src: '/img/Whity.gif'
+            src: '/img/Whity.gif',
+            isViewed:false
 
         }];
 
@@ -33,6 +38,10 @@
         };
         $scope.kittyNameClick = function (index) {
             $scope.mainIndex = index;
+            $scope.kittys[index].isViewed=true;
+        };
+        $scope.kittyIncrease = function (cat, delta) {
+            cat.clickCount = cat.clickCount + delta;
         };
     };
     module.controller("kittyController", kittyController);
