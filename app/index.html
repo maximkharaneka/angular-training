@@ -14,29 +14,36 @@
 <body ng-app="app">
 
 <div class="container" ng-controller="kittyController as model">
-    <div class="row" ng-repeat="cat in kittys">
-        <div class="col-sm-4">
-            <h5>{{cat.name}}</h5>
+{{mainIndex}}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title" >{{kittys[mainIndex].name}} <span class="badge">{{kittys[mainIndex].clickCount}}</span></h3>
         </div>
-        <div class="col-sm-2">
-            <h6>{{cat.clickCount}}</h6>
-        </div>
-        <div class="col-sm-6">
-            <img ng-src="{{cat.src}}" ng-click="kittyClick(cat)" height="100" width="100"/>
-        </div>
+        <div class="panel-body">
+            <img ng-src="{{kittys[mainIndex].src}}" ng-click="kittyClick(kittys[mainIndex])" height="400" width="400"/>
 
+        </div>
     </div>
 
+    <div class="col-md-6">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Click count</th>
+                <th>Avatar</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="cat in kittys track by $index | orderBy:'name'">
+                <td><h2 ng-click="kittyNameClick( $index )">{{cat.name}}</h2></td>
+                <td>{{cat.clickCount}}</td>
+                <td><img ng-src="{{cat.src}}" ng-click="kittyClick(cat)" height="100" width="100"/></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
-    <!--<div class="row" ng-repeat="cat in model.kittys">-->
-    <!--<div class="col-sm-8" >-->
-    <!--<img ng-src="{{cat.src}}" ng-click="kitty.kittyClick(cat)"/>-->
-    <!--</div>-->
-    <!--<div class="col-sm-4">-->
-    <!--<h6>{{kitty.clickCount}}</h6>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!-- -->
 </div>
 </body>
 </html>

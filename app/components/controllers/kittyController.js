@@ -1,5 +1,6 @@
 (function (module) {
     var kittyController = function ($scope) {
+        $scope.mainIndex = 0;
 
         $scope.kittys = [{
             clickCount: 0,
@@ -30,7 +31,9 @@
         $scope.kittyClick = function (cat) {
             cat.clickCount = cat.clickCount + 1;
         };
-
+        $scope.kittyNameClick = function (index) {
+            $scope.mainIndex = index;
+        };
     };
     module.controller("kittyController", kittyController);
 
