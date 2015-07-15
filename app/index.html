@@ -18,17 +18,19 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <form class="form-inline">
-            <span>{{kittys[mainIndex].name}}</span>
+                <span>{{kittys[mainIndex].name}}</span>
 
             <span class="input-group spinner">
 
                 <input type="text" class="form-control" ng-model="kittys[mainIndex].clickCount">
                 <div class="input-group-btn-vertical">
-                    <button class="btn btn-default" type="button" ng-click="kittyIncrease(kittys[mainIndex],1)"><i class="fa fa-caret-up"></i></button>
-                    <button class="btn btn-default" type="button" ng-click="kittyIncrease(kittys[mainIndex],-1)"><i class="fa fa-caret-down"></i></button>
+                    <button class="btn btn-default" type="button" ng-click="kittyIncrease(kittys[mainIndex],1)"><i
+                            class="fa fa-caret-up"></i></button>
+                    <button class="btn btn-default" type="button" ng-click="kittyIncrease(kittys[mainIndex],-1)"><i
+                            class="fa fa-caret-down"></i></button>
                 </div>
             </span>
-            <!--<span class="badge">{{kittys[mainIndex].clickCount}}</span>-->
+                <!--<span class="badge">{{kittys[mainIndex].clickCount}}</span>-->
             </form>
         </div>
         <div class="panel-body">
@@ -36,26 +38,49 @@
 
         </div>
     </div>
+    <div class="row">
+        <div class="col-xs-2">
+            Find by name:
+        </div>
+        <div class="col-xs-4">
+            <input class="form-control" type="text" ng-model="findName">
+        </div>
+        <div class="col-xs-2">
+            <button class="btn btn-sm btn-success" ng-click="applyFind()">Find</button>
+        </div>
+        <div class="col-xs-2">
+            Order:
+        </div>
+        <div class="col-xs-2">
+            <select class="form-control" ng-model="isAsc">
+                <option value="true">Asc</option>
+                <option value="">Desc</option></select>
+        </div>
+    </div>
 
-    <div class="col-md-6">
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>Name</th>
-                <th>Viewed</th>
-                <th>Click count</th>
-                <th>Avatar</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="cat in kittys track by $index | orderBy:'name'">
-                <td><h2 ng-click="kittyNameClick( $index )">{{cat.name}}</h2></td>
-                <td><img src="/img/ok.png" ng-show="cat.isViewed" height="25" width="25"/></td>
-                <td>{{cat.clickCount}}</td>
-                <td><img ng-src="{{cat.src}}" ng-click="kittyClick(cat)" height="100" width="100"/></td>
-            </tr>
-            </tbody>
-        </table>
+
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Viewed</th>
+                    <th>Click count</th>
+                    <th>Avatar</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="cat in kittys| filter:{name:nameFilter} | orderBy:'name':isAsc ">
+                    <!--<tr ng-repeat="cat in kittys track by $index">-->
+                    <td><h2 ng-click="kittyNameClick(cat)">{{cat.name}}</h2></td>
+                    <td><img src="/img/ok.png" ng-show="cat.isViewed" height="25" width="25"/></td>
+                    <td>{{cat.clickCount}}</td>
+                    <td><img ng-src="{{cat.src}}" ng-click="kittyClick(cat)" height="100" width="100"/></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
 </div>
