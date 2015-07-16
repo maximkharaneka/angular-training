@@ -23,20 +23,24 @@
                     <input  class="form-control" name="name" id="inputName"  placeholder="Name" ng-model="name" required>
                 </div>
             </div>
+            <span class="label label-danger" ng-show="kittyForm.name.$invalid && kittyForm.name.$dirty">
+                Name is required
+            </span>
             <div class="form-group" show-errors>
                 <label for="inputUrl" class="col-sm-2 control-label">Avatar url:</label>
                 <div class="col-sm-10">
                     <input type="url" class="form-control" name="inputUrl" id="inputUrl" placeholder="Url" ng-model="tmpSrc" ng-blur="urlBlur()" required>
                 </div>
             </div>
+            <span class="label label-danger" ng-show="kittyForm.inputUrl.$invalid && kittyForm.inputUrl.$dirty">
+                Name is required
+            </span>
             <div class="form-group" >
                 <div class="col-sm-offset-2 col-sm-10">
                     <img ng-src="{{src}}" class="img-thumbnail"   style="width: 100px; height: 100px;">
                 </div>
             </div>
-            <div ng-show="!kittyForm.$valid">
-                fdhsfdg
-            </div>
+
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-3">
                     <button type="button" class="btn btn-sucess" ng-disabled="!kittyForm.$valid">Create</button>
